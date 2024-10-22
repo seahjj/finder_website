@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text 2 Window</title>
+    <script>
+        // 버튼 클릭 시 원래 창으로 돌아가는 함수
+        function returnToOriginal() {
+            if (window.opener) {
+                window.opener.focus();  // 원래 창으로 포커스 이동
+                window.close();         // 새 창 닫기
+            }
+        }
+    </script>
+<style>
+    .first {
+        font-family: 'ChosunKg';
+        margin: 0;
+        padding: 0;
+        box-sizing: content-box;
+        line-height:230% ;
+        font-size: 2rem;
+    }
+    .second {
+        font-family: 'ChosunKg';
+        margin: 0;
+        padding: 10;
+        box-sizing: border-box;
+        line-height:210% ;
+        font-size: 1rem;
+
+    }
+    .back {
+        width: 30%; /* 더 큰 화살표 */
+        max-width: 100px; /* 최대 크기 제한 */
+        top: 69vh; /* 뷰포트 상단에서 20% */
+        left: 20vw; /* 뷰포트 좌측에서 30% */
+    }
+</style>
+</head>
+
+<body>
+<h1 class="first">파인더를 찾아가보자</h1>
+
+<p class="second" >이 페이지는 아직 탐구중입니다.</p>
+<!-- <button onclick="returnToOriginal()">원래 창으로 돌아가기</button> -->
+<div class="back" onclick="returnToOriginal()">
+    <img src="SVG/backspace.svg" alt="back">
+</div>
+</body>
+
+</html>
+

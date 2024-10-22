@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Website</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // 각 텍스트를 클릭할 때 새로운 창을 여는 함수
+        function openNewWindow(url) {
+            var newWindow = window.open(url, '_blank', 'width=600,height=400');
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="text-1" class="item" onclick="openNewWindow('text1.html')">"물건을 잃어버렸다..!"</div>
+        <div id="text-2" class="item" onclick="openNewWindow('text2.html')">"인터뷰에 응해주셔서 감사합니다"</div>
+        <div id="text-3" class="item" onclick="openNewWindow('text3.html')">"물건을 되찾았다..!"</div>
+        <div id="text-4" class="item" onclick="openNewWindow('text4.html')">"파인더를 찾아가 보자"</div>
+        <div id="text-5" class="item" onclick="openNewWindow('text5.html')">"그 물건은 어떤 물건이었지?"</div>
+        <div id="text-6" class="item" > <span>당신의 잃어버린<br>이야기를<br>찾아드립니다</span>
+        <!-- <img class="img" src="SVG/main.svg" alt=""> -->
+            <img src="SVG/main.svg" alt="main image">
+        </div>
+
+        <div id="text-7" class="item" >의뢰가 처음이신가요? <br> 말풍선을 <br> 클릭해보세요</div>
+    </div>
+
+    <!-- 로고와 화살표 이미지를 추가 -->
+    <div class="logo-holder">
+        <img src="SVG/finderlogo.svg" alt="Finder Logo">
+    </div>
+    <div class="keeper-logo">
+        <img src="SVG/keeperlogo.svg" alt="Keeper Logo">
+    </div>
+
+    <!-- 화살표 이미지들 -->
+    <div class="arrows arrows1">
+        <img src="SVG/arrow1.svg" alt="Arrow 1">
+    </div>
+    <div class="arrows arrows2">
+        <img src="SVG/arrow2.svg" alt="Arrow 2">
+    </div>
+    <div class="arrows arrows3">
+        <img src="SVG/arrow3.svg" alt="Arrow 3">
+    </div>
+    <div class="arrows arrows4">
+        <img src="SVG/arrow4.svg" alt="Arrow 4">
+    </div>
+    <div class="arrows arrows5">
+        <img src="SVG/arrow5.svg" alt="Arrow 5">
+    </div>
+    <div class="arrows arrows6">
+        <img src="SVG/arrow6.svg" alt="Arrow 6">
+    </div>
+    <div class="arrows arrows7">
+        <img src="SVG/arrow7.svg" alt="Arrow 7">
+    </div>
+</body>
+
+</html>
