@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Image Panel Carousel with Smooth and Consistent Transitions</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column; /* Arrange items vertically */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffffff;
+            margin: 0;
+            overflow: hidden;
+        }
+        .intro-text {
+            font-family: 'ChosunKg', sans-serif; /* Use your desired font */
+            font-size: 1.7rem;
+            margin-bottom: 120px; /* Space below the text */
+            color: #333; /* Text color */
+            text-align: center; /* Centers the text horizontally */
+            line-height: 1.5; /* Adjusts the line spacing (1.5 is an example) */        
+        }
+
+        .carousel {
+            position: relative;
+            width: 800px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+        .panel {
+            position: absolute;
+            width: 830px;
+            height: 500px;
+            transition: transform 2s ease-out, opacity 1s ease;
+            opacity: 0.6;
+        }
+        /* Position classes */
+        .position0 { transform: translateX(-650px) scale(0.4); z-index: -2; opacity: 1; }
+        .position1 { transform: translateX(-600px) scale(0.6); z-index: -1; opacity: 1; }
+        .position2 { transform: translateX(-550px) scale(0.8); z-index: 0; opacity: 1; }
+        .position3 { transform: translateX(-220px) scale(0.9); z-index: 1; opacity: 0.98; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); }
+        .position4 { transform: translateX(0) scale(1); z-index: 2; opacity: 1; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); }
+        .position5 { transform: translateX(220px) scale(0.9); z-index: 1; opacity: 0.98; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); }
+        .position6 { transform: translateX(550px) scale(0.8); z-index: 0; opacity: 1; }
+        .position7 { transform: translateX(600px) scale(0.6); z-index: -1; opacity: 1; }
+        .position8 { transform: translateX(650px) scale(0.4); z-index: -2; opacity: 1; }
+        /* Button styling */
+        .right-button {
+            position: absolute;
+            right: 20px;
+            cursor: pointer;
+            z-index: 2000;
+            background-color: transparent;
+            border: none;
+            width: 100px;
+            height: 100px;
+        }
+        .right-button:hover {
+            transform: scale(1.1); /* Slightly enlarge the button */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add shadow */
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Introductory Text -->
+    <div class="intro-text">파인더를 소개합니다</br>화살표 위 마우스를 올려놓으세요</div>
+    
+    <div class="carousel">
+        <div class="panel position0"><img src="image_1.png" alt="Image 1"></div>
+        <div class="panel position1"><img src="image_2.png" alt="Image 2"></div>
+        <div class="panel position2"><img src="image_3.png" alt="Image 3"></div>
+        <div class="panel position3"><img src="image_4.png" alt="Image 4"></div>
+        <div class="panel position4"><img src="image_5.png" alt="Image 5"></div>
+        <div class="panel position5"><img src="image_6.png" alt="Image 6"></div>
+        <div class="panel position6"><img src="image_7.png" alt="Image 7"></div>
+        <div class="panel position7"><img src="image_8.png" alt="Image 8"></div>
+        <div class="panel position8"><img src="image_9.png" alt="Image 9"></div>
+    </div>
+    
+    <button class="right-button" onmouseover="startAutoRotate()" onmouseout="stopAutoRotate()">
+        <img src="SVG/right button.svg" alt="right-button">
+    </button>
+
+    <script>
+        let panels = document.querySelectorAll('.panel');
+        let currentImageIndex = 0;
+        let autoRotateInterval;
+
+        function rotatePanels() {
+            // Increment the image index and use modulo to wrap around 9 images
+            currentImageIndex = (currentImageIndex + 1) % 9;
+
+            // Rotate positions by moving the first element to the end
+            panels = Array.from(panels); // Convert NodeList to Array to manipulate order
+            panels.push(panels.shift()); // Move the first element to the end
+
+            // Apply updated classes and images to each panel
+            panels.forEach((panel, i) => {
+                panel.className = `panel position${i}`;
+                const imageIndex = (currentImageIndex + i) % 9 + 1; // Cycle from 1 to 9
+                panel.querySelector('img').src = `image_${imageIndex}.png`;
+            });
+        }
+
+        function startAutoRotate() {
+            autoRotateInterval = setInterval(rotatePanels, 2600); // Rotate every 1.5 seconds
+        }
+
+        function stopAutoRotate() {
+            clearInterval(autoRotateInterval); // Stop rotating
+        }
+    </script>
+</body>
+</html>

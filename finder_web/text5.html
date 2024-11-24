@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Positioning and Image Interaction</title>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@v0.169.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.169.0/examples/jsm/"
+            }
+        }
+    </script>
+    <style>
+        html, body { margin:0px; height: 100%; }
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .file-image, .content-image {
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.5s ease-in; /* 위치 변경 시 부드러운 전환 */
+            width: 150px;
+            height: 150px;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* 검정 배경, 투명도 0.6 */
+            display: none; /* 기본적으로 숨김 */
+            justify-content: center;
+            align-items: center;
+        }
+        .text-window {
+            font-family: 'ChosunKg';
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body bgcolor="#ffffff">
+    <script type="module" src="script2.js"></script>
+    
+    <!-- 파일 이미지 1 -->
+    <img src="SVG/close.svg" class="file-image" id="fileImage1" alt="File Image 1" ondblclick="decompressFile1()">
+    <!-- 파일 오픈 이미지 (기본적으로 숨김) -->
+    <img src="SVG/open.svg" class="file-image" id="fileOpenImage" alt="File Open Image" style="display: none;">
+    <!-- 콘텐츠 이미지 1 (기본적으로 숨김) -->
+    <img src="SVG/paper.svg" class="content-image" id="contentImage1" alt="Content Image 1" style="display: none;" onclick="showOverlay()">
+    <!-- 파일이미지3 -->
+    <img src="SVG/close.svg" class="file-image" id="fileImage2" alt="File Image 2" style="display: none;" ondblclick="decompressFile2()">
+    <!-- 파일이미지4 -->
+    <img src="SVG/close.svg" class="file-image" id="fileImage3" alt="File Image 3" style="display: none;" ondblclick="decompressFile3()">
+    <!-- 파일이미지5 -->
+    <img src="SVG/close.svg" class="file-image" id="fileImage4" alt="File Image 4" style="display: none;" ondblclick="decompressFile4()">
+    <!-- 파일이미지6 -->
+    <img src="SVG/close.svg" class="file-image" id="fileImage5" alt="File Image 5" style="display: none;" ondblclick="decompressFile5()">
+
+    
+    <!-- 검정 배경 오버레이 -->
+    <div class="overlay" id="overlay" onclick="hideOverlay()">
+        <div class="text-window">
+            <p>여기에 원하는 텍스트를 입력하세요</p>
+        </div>
+    </div>
+
+    <script>
+        repositionRandomlyEverySecond("fileImage1");
+
+        // 파일 이미지 1을 더블 클릭하면 실행되는 함수
+        function decompressFile1() {
+            document.getElementById("fileImage1").style.display = "none"; // 파일 이미지 1 숨기기
+            document.getElementById("fileOpenImage").style.display = "block"; // 파일 이미지 2 표시
+            document.getElementById("contentImage1").style.display = "block"; // 콘텐츠 이미지 1 표시
+            document.getElementById("fileImage3").style.display = "block"; //파일 이미지 3 표시
+
+            // 파일 이미지 2와 콘텐츠 이미지 1을 랜덤 위치로 이동
+            repositionRandomlyEverySecond("fileOpenImage");
+            repositionRandomlyEverySecond("contentImage1");
+        }
+
+        // 파일 이미지 3을 더블 클릭하면 실행되는 함수
+        function decompressFile1() {
+            document.getElementById("fileImage2").style.display = "none"; // 파일 이미지 1 숨기기
+            document.getElementById("fileOpenImage").style.display = "block"; // 파일 이미지 2 표시
+            document.getElementById("contentImage1").style.display = "block"; // 콘텐츠 이미지 1 표시
+            document.getElementById("fileImage3").style.display = "block"; //파일 이미지 3 표시
+
+            // 파일 이미지 와 콘텐츠 이미지 1을 랜덤 위치로 이동
+            repositionRandomlyEverySecond("fileOpenImage");
+            repositionRandomlyEverySecond("contentImage1");
+        }
+
+
+
+        //1초마다 랜덤한 위치로 이동
+        function repositionRandomlyEverySecond(elementId) {
+        setInterval(function () {
+        var element = document.getElementById(elementId);
+        var top = Math.random() * (window.innerHeight - element.clientHeight);
+        var left = Math.random() * (window.innerWidth - element.clientWidth);
+        element.style.top = top + "px";
+        element.style.left = left + "px";
+        }, 4000); // 1000ms = 1초
+        }
+
+        // 콘텐츠 이미지 1을 클릭하면 실행되는 함수 (오버레이 표시)
+        function showOverlay() {
+            document.getElementById("overlay").style.display = "flex"; // 오버레이 표시
+        }
+
+        // 검정 배경을 클릭하면 실행되는 함수 (오버레이 숨기기)
+        function hideOverlay() {
+            document.getElementById("overlay").style.display = "none"; // 오버레이 숨기기
+        }
+    </script>
+</body>
+</html>
